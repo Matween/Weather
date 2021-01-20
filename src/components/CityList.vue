@@ -2,12 +2,7 @@
   <div class="cities">
     <ul v-if="cities.length > 0">
       <li v-for="city in cities" v-bind:key="city.name">
-        <City
-          :city="city.name"
-          :temperature="city.temperature"
-          :humidity="city.humidity"
-          :description="city.description"
-        />
+        <City :city="city.name" />
       </li>
     </ul>
 
@@ -37,14 +32,14 @@ export default {
 
 <style scoped>
 .cities {
-    width: 50%;
-    margin: 0 auto;
+  width: 50%;
+  margin: 0 auto;
 }
 ul {
-    list-style-type: none;
-    width: 100%;
+  list-style-type: none;
+  width: 100%;
 }
 ul li {
-    display: flex;
+  display: flex;
 }
 </style>

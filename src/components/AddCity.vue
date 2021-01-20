@@ -21,10 +21,7 @@ export default {
   methods: {
     addCity() {
       this.$store.state.cities.push({
-        name: this.city,
-        temperature: undefined,
-        humidity: undefined,
-        description: "",
+        name: this.city
       });
       this.$store.state.showAddCity = false;
       this.city = "";
