@@ -10,11 +10,6 @@ const store = createStore({
             cities: [],
             showAddCity: false
         }
-    },
-    mutations: {
-        addCity(state, city) {
-            state.cities.push(city);
-        }
     }
 })
 

@@ -1,6 +1,15 @@
 <template>
-  <div>
-    <ul class="cities" v-if="cities.length > 0"></ul>
+  <div class="cities">
+    <ul v-if="cities.length > 0">
+      <li v-for="city in cities" v-bind:key="city.name">
+        <City
+          :city="city.name"
+          :temperature="city.temperature"
+          :humidity="city.humidity"
+          :description="city.description"
+        />
+      </li>
+    </ul>
 
     <div v-if="cities.length === 0">No cities.</div>
     <AddCity v-show="$store.state.showAddCity" />
@@ -9,20 +18,33 @@
 </template>
 
 <script>
-import AddCity from './AddCity.vue'
+import AddCity from "./AddCity.vue";
+import City from "./City.vue";
 
 export default {
   name: "CityList",
   components: {
-      AddCity
+    City,
+    AddCity,
   },
   computed: {
     cities() {
       return this.$store.state.cities;
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
+.cities {
+    width: 50%;
+    margin: 0 auto;
+}
+ul {
+    list-style-type: none;
+    width: 100%;
+}
+ul li {
+    display: flex;
+}
 </style>
