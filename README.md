@@ -1,6 +1,18 @@
 # weather
 
 ## Project setup
+
+```
+touch .env.local
+```
+
+Add your api key like so:
+
+```
+VUE_APP_OPENWEATHERMAP_API_KEY=your_api_key_goes_here
+```
+
+
 ```
 yarn install
 ```
