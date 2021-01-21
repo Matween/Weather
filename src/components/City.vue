@@ -1,8 +1,8 @@
 <template>
   <div class="info">
     <div class="city-info">
-      {{ city }} <br />
-      {{ description }}
+      <div class="city-name">{{ city }}</div>
+      <div class="city-description">{{ description }}</div>
     </div>
     <div class="weather-info">
       {{ temperature }} <br />
@@ -70,11 +70,27 @@ export default {
 <style scoped>
 .info {
   width: 100%;
+  background-color: aliceblue;
+  margin: 0.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  color: cadetblue;
 }
 .city-info {
   float: left;
+  text-align: left;
 }
 .weather-info {
   float: right;
+}
+.city-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.city-description {
+  font-weight: 100;
+  color: darkgrey;
+  font-size: 0.85rem;
 }
 </style>
