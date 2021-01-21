@@ -1,16 +1,19 @@
 <template>
-  <CityList />
+  <div>
+    <h3>Weather</h3>
+    <CityList />
+  </div>
 </template>
 
 <script>
-import CityList from './components/CityList.vue'
+import CityList from "./components/CityList.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    CityList
+    CityList,
   },
-}
+};
 </script>
 
 <style>
