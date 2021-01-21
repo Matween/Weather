@@ -1,8 +1,8 @@
 <template>
   <div class="cities">
     <ul v-if="cities.length > 0">
-      <li v-for="city in cities" v-bind:key="city.name">
-        <City :city="city.name" />
+      <li v-for="city in cities" v-bind:key="city">
+        <City :city="city" />
       </li>
     </ul>
 
@@ -22,11 +22,19 @@ export default {
     City,
     AddCity,
   },
+  mounted() {
+    this.initStore();
+  },
   computed: {
     cities() {
       return this.$store.state.cities;
     },
   },
+  methods: {
+    initStore() {
+      this.$store.commit('initializeStore');
+    }
+  }
 };
 </script>
 
