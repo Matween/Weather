@@ -8,7 +8,7 @@
 
     <div v-if="cities.length === 0">No cities.</div>
     <AddCity v-show="$store.state.showAddCity" />
-    <button v-on:click="$store.state.showAddCity = true">Add</button>
+    <button id="add-city" v-on:click="$store.state.showAddCity = true">Add</button>
   </div>
 </template>
 
@@ -39,15 +39,40 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 768px) {
+  .cities {
+    width: 100%!important;
+  }
+}
+
 .cities {
   width: 50%;
   margin: 0 auto;
 }
 ul {
+  padding: 0;
   list-style-type: none;
   width: 100%;
 }
 ul li {
   display: flex;
 }
+
+#add-city {
+  width: 30%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bolder;
+  background-color: rgb(132, 223, 180);
+}
+
+#add-city:hover,
+#add-city:focus {
+  background-color: rgb(112, 184, 150);
+  outline: none;
+}
+
 </style>
