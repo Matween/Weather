@@ -20,9 +20,7 @@ export default {
   },
   methods: {
     addCity() {
-      this.$store.state.cities.push({
-        name: this.city
-      });
+      this.$store.commit('addLocalStoreCities', this.city);
       this.$store.state.showAddCity = false;
       this.city = "";
     },
