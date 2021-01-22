@@ -22,14 +22,15 @@ const store = createStore({
             })
         },
         updateLocalStoreCities(state) {
+            let promises = [];
             for (let i = 0; i < state.cities.length; i++) {
-                getCityData(state.cities[i].name).then(cData => {
-                    state.cities[i] = cData;
-                    localStorage.setItem('cities', JSON.stringify(state.cities));
-                });
+                promises.push(getCityData(state.cities[i].name));
             }
-            
-            state.isLoading = false;
+            Promise.all(promises).then(vals => {
+                state.cities = vals;
+                localStorage.setItem('cities', JSON.stringify(state.cities));
+                state.isLoading = false;
+            });
         },
         initializeStore(state) {
             state.cities = localStorage.getItem('cities') == null ? [] : JSON.parse(localStorage.getItem('cities'));

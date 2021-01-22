@@ -1,5 +1,6 @@
 <template>
   <div class="cities">
+    <button class="refresh" v-on:click="clickRefresh">&orarr;</button>
     <div v-if="isLoading" class="loading-container">
       <div class="loading"></div>
     </div>
@@ -42,11 +43,6 @@ export default {
       return this.$store.state.isLoading;
     }
   },
-  watch: {
-    cities(newCities) {
-      console.log(newCities);
-    }
-  },
   data() {
     return {
       pStart: {x: 0, y: 0},
@@ -70,11 +66,11 @@ export default {
     swipe(e) {
       if (typeof e['targetTouches'] !== "undefined") {
         let touch = e.targetTouches[0];
-        this.pStart.x = touch.screenX;
-        this.pStart.y = touch.screenY;
+        this.pCurrent.x = touch.screenX;
+        this.pCurrent.y = touch.screenY;
       } else {
-        this.pStart.x = e.screenX;
-        this.pStart.y = e.screenY;
+        this.pCurrent.x = e.screenX;
+        this.pCurrent.y = e.screenY;
       }
       let changeY = Math.abs(this.pStart.y - this.pCurrent.y);
       if (document.body.scrollTop === 0) {
@@ -86,6 +82,10 @@ export default {
     },
     loading() {
       this.$store.commit('changeIsLoading', true);
+    },
+    clickRefresh() {
+      this.loading();
+      this.swipeEnd();
     }
   }
 };
@@ -95,6 +95,9 @@ export default {
 @media only screen and (max-width: 768px) {
   .cities {
     width: 100% !important;
+  }
+  .refresh {
+    visibility: hidden!important;
   }
 }
 
@@ -155,5 +158,18 @@ ul li {
   to {
     transform: rotate(360deg);
   }
+}
+
+.refresh {
+  visibility: visible;
+  font-size: 1.15rem;
+  outline: none;
+  border: none;
+  padding: 0.55rem;
+  border-radius: 5px;
+}
+
+.refresh:hover{
+  background-color: darkgray;
 }
 </style>
