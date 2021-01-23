@@ -21,7 +21,7 @@ export async function getCityData(cityName) {
     
     return axios
         .request(options)
-        .then(function (response) {
+        .then(response => {
             const wData = response.data;
             city.temperature = wData.main.temp + "°C";
     
@@ -30,10 +30,7 @@ export async function getCityData(cityName) {
                 descriptor.charAt(0).toUpperCase() + descriptor.slice(1); // capitalize
             city.humidity = wData.main.humidity + "%";
             return city;
-        })
-        .catch(function (error) {
-            console.log(error);
+        }).catch(error => {
+            throw Error(error.message)
         });
-
-
 }

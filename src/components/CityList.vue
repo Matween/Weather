@@ -4,7 +4,9 @@
     <div v-if="isLoading" class="loading-container">
       <div class="loading"></div>
     </div>
-
+    <div v-if="isError !== ''" class="error">
+      {{ isError }}
+    </div>
     <ul v-if="cities.length > 0">
       <li v-for="city in cities" v-bind:key="city.name">
         <City :city="city.name" :description="city.description" :temperature="city.temperature" :humidity="city.humidity" />
@@ -41,6 +43,9 @@ export default {
     },
     isLoading() {
       return this.$store.state.isLoading;
+    },
+    isError() {
+      return this.$store.state.isError;
     }
   },
   data() {
@@ -171,5 +176,16 @@ ul li {
 
 .refresh:hover{
   background-color: darkgray;
+}
+
+.error {
+  background-color:salmon;
+  color: brown;
+  font-size: 1rem;
+  font-weight: bolder;
+  margin: 0.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 95%;
 }
 </style>
